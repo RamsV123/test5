@@ -1,0 +1,35 @@
+
+graph_url = generate_graph(
+    vertices,
+    edges,
+    shortest_edges
+)
+<img src="data:image/png;base64,{{ graph_url }}">
+
+<h2>Bellman-Ford Iterations</h2>
+<table border="1">
+    <tr>
+        <th>Iteration</th>
+        <th>Edge Relaxed</th>
+        <th>Old Distance</th>
+        <th>New Distance</th>
+    </tr>
+
+    {% for step in steps %}
+    <tr>
+        <td>{{ step.iteration }}</td>
+        <td>{{ step.edge }}</td>
+        <td>{{ step.old }}</td>
+        <td>{{ step.new }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h2>Shortest Paths</h2>
+
+{% for node, path in paths.items() %}
+<p>
+    {{ node }} :
+    {{ " → ".join(path) }}
+    (Cost = {{ result[node] }})
+</p>
+{% endfor %}
